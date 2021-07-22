@@ -208,7 +208,7 @@ let LocalHints = {
                 for (let position = 0; position < visibleElements.length; position++) {
                     element = visibleElements[position];
                     if (element.possibleFalsePositive && (function () {
-                        let index = Math.max(0, position - 6); // This determines how far back we're willing to look.
+                        let index = Math.max(0, position - 6);
                         while (index < position) {
                             let candidateDescendant = visibleElements[index].element;
                             for (let _ of descendantsToCheck) {
@@ -230,12 +230,10 @@ let LocalHints = {
         return visibleElements.reverse();
     },
 
-    // 测试 百度搜索 site:gov.cn，主要在第二页
     getInputHints() {
         let visibleElements = this.getLocalHints();
         let inputClickEle = [];
         let otherClickEle = []
-        // 默认认为点击对象在输入框的后面
         for (let position = 0; position < visibleElements.length; position++) {
             let element = visibleElements[position];
             let tagName = element.tagName.toLowerCase()
@@ -301,12 +299,10 @@ let LocalHints = {
                             checkButton = true
                             break
                         } else if (parentNodeEleClassVal && (parentNodeEleClassVal.includes("search") || parentNodeEleClassVal.includes("btn") || parentNodeEleClassVal.includes("submit") || parentNodeEleClassVal.includes("button"))) {
-                            // 测试父元素是否是行内标签，是否有search
                             tmpArray.push(mayClicked)
                             checkButton = true
                             break
                         } else if (parentNodeEleIDVal && (parentNodeEleIDVal.includes("search") || parentNodeEleIDVal.includes("btn") || parentNodeEleIDVal.includes("submit") || parentNodeEleIDVal.includes("button"))) {
-                            // 测试父元素是否是行内标签，是否有search
                             tmpArray.push(mayClicked)
                             checkButton = true
                             break
